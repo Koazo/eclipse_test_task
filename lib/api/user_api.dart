@@ -8,7 +8,8 @@ class UserApi {
   Future<List<User>> fetchUsers() async {
     final Uri api = Uri.parse('https://jsonplaceholder.typicode.com/users');
     final response = await http.get(api);
-    return jsonDecode(response.body).map((x) => User.fromJson(x)).toList();
+    return List<User>.from(
+        await jsonDecode(response.body).map((x) => User.fromJson(x)));
 
     // print(jsonDecode(response.body).runtimeType);
     // print(users.first);

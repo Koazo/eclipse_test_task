@@ -34,7 +34,7 @@ class _UsersPageState extends State<UsersPage> {
               itemBuilder: (context, index) {
                 return Card(
                   child: ListTile(
-                    title: Text('${snapshot.data}'),
+                    title: Text('${snapshot.data.}'),
                     subtitle: Text('${snapshot.data?.last}'),
                   ),
                 );
