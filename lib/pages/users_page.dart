@@ -10,7 +10,7 @@ class UsersPage extends StatefulWidget {
 }
 
 class _UsersPageState extends State<UsersPage> {
-  late Future<Users?>? users;
+  late Future<User?>? users;
 
   @override
   void initState() {
