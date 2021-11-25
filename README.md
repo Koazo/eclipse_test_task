@@ -42,9 +42,9 @@
 ## Что использовалось
 
 - Эмулятор: Pixel 4 XL (Android 9.0 Pie)
-- IDE: Visual Studio Code
+- [IDE: Visual Studio Code](https://visualstudio.microsoft.com/ru/vs/)
+- [SDK: Flutter 2.5.3-stable](https://docs.flutter.dev/get-started/install/windows)
 
 ### Используемые пакеты
 
-- [json_serialable - 6.0.1](https://pub.dev/packages/json_serializable)
-- [build_runner 2.1.5](https://pub.dev/packages/build_runner)
+- [http: ^0.13.4](https://pub.dev/packages/http)
