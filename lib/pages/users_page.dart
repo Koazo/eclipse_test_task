@@ -10,7 +10,7 @@ class UsersPage extends StatefulWidget {
 }
 
 class _UsersPageState extends State<UsersPage> {
-  late Future<User?>? users;
+  late Future<List<User>> users;
 
   @override
   void initState() {
@@ -26,7 +26,7 @@ class _UsersPageState extends State<UsersPage> {
         title: const Text('Json placeholder example'),
         centerTitle: true,
       ),
-      body: FutureBuilder<Users?>(
+      body: FutureBuilder<List<User>>(
         future: users,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -34,13 +34,12 @@ class _UsersPageState extends State<UsersPage> {
               itemBuilder: (context, index) {
                 return Card(
                   child: ListTile(
-                    title:
-                        Text('${snapshot.data?.usersList?[index]?.username}'),
-                    subtitle: Text('${snapshot.data?.usersList?[index]?.name}'),
+                    title: Text('${snapshot.data}'),
+                    subtitle: Text('${snapshot.data?.last}'),
                   ),
                 );
               },
-              itemCount: snapshot.data?.usersList?.length,
+              itemCount: snapshot.data?.length,
             );
           } else if (snapshot.hasError) {
             Text('${snapshot.error.toString()}');
