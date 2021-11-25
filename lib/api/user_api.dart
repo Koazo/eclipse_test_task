@@ -5,10 +5,10 @@ import 'package:eclipse_test_task/models/user.dart';
 import 'package:http/http.dart' as http;
 
 class UserApi {
-  Future<User?>? fetchUsers() async {
+  Future<User> fetchUsers() async {
     final Uri api = Uri.parse('https://jsonplaceholder.typicode.com/users');
     final response = await http.get(api);
-    final List<User> users =
+    final users =
         jsonDecode(response.body).map((x) => User.fromJson(x)).toList();
     print(jsonDecode(response.body).runtimeType);
 
