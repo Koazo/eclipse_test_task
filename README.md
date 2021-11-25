@@ -46,5 +46,5 @@ IDE: Visual Studio Code
 
 ### Используемые пакеты
 
-https://pub.dev/packages/json_serializable "json_serialable 6.0.1"
-https://pub.dev/packages/build_runner "build_runner 2.1.5"
+[json_serialable - 6.0.1](https://pub.dev/packages/json_serializable)
+[build_runner 2.1.5](https://pub.dev/packages/build_runner)
