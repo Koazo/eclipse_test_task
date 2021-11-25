@@ -41,8 +41,8 @@
 
 ## Что использовалось
 
-Эмулятор: Pixel 4 XL (Android 9.0 Pie)
-IDE: Visual Studio Code
+- Эмулятор: Pixel 4 XL (Android 9.0 Pie)
+- IDE: Visual Studio Code
 
 ### Используемые пакеты
 
