@@ -6,7 +6,8 @@ import 'package:http/http.dart' as http;
 
 class UserApi {
   Future<List<User>> fetchUsers() async {
-    final Uri api = Uri.parse('https://jsonplaceholder.typicode.com/users');
+    final Uri api = Uri.https(Constants.PLACEHOLDER_BASE_URL_DOMAIN,
+        Constants.PLACEHOLDER_USERS_PATH);
     final response = await http.get(api);
     return List<User>.from(
         await jsonDecode(response.body).map((x) => User.fromJson(x)));
