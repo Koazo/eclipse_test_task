@@ -7,5 +7,11 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => MaterialApp(home: UsersPage());
+  Widget build(BuildContext context) => MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'GothamPro',
+        appBarTheme: const AppBarTheme(
+            color: Colors.white, elevation: .0, foregroundColor: Colors.black),
+      ),
+      home: UsersPage());
 }

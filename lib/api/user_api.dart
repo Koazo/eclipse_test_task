@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:eclipse_test_task/constants/apis.dart';
 import 'package:eclipse_test_task/models/user.dart';
 import 'package:http/http.dart' as http;
