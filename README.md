@@ -50,3 +50,11 @@
 - [http: ^0.13.4](https://pub.dev/packages/http)
 
 ## Демонстрация
+
+### Первый экран
+
+![image](https://user-images.githubusercontent.com/71566968/143688365-667b6240-3079-4cba-82a4-cd1897949022.png)
+
+### Второй экран
+![image](https://user-images.githubusercontent.com/71566968/143688375-712044b0-8c8d-4896-8716-d6dc3626b157.png)
+![image](https://user-images.githubusercontent.com/71566968/143688404-715762c0-4101-49f6-92c6-89f40d71f1cc.png)
