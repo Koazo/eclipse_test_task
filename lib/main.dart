@@ -1,7 +1,7 @@
 import 'package:eclipse_test_task/pages/users_page.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -13,5 +13,5 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
             color: Colors.white, elevation: .0, foregroundColor: Colors.black),
       ),
-      home: UsersPage());
+      home: const UsersPage());
 }
