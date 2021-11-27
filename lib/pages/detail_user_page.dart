@@ -1,7 +1,11 @@
 import 'package:eclipse_test_task/api/album_api.dart';
+import 'package:eclipse_test_task/api/photo_api.dart';
 import 'package:eclipse_test_task/api/post_api.dart';
 import 'package:eclipse_test_task/models/album.dart';
+import 'package:eclipse_test_task/models/photo.dart';
 import 'package:eclipse_test_task/models/post.dart';
+import 'package:eclipse_test_task/pages/albums_page.dart';
+import 'package:eclipse_test_task/pages/posts_page.dart';
 import 'package:flutter/material.dart';
 import 'package:eclipse_test_task/models/user.dart';
 import 'package:flutter/rendering.dart';
@@ -18,6 +22,7 @@ class DetailUserPage extends StatefulWidget {
 class _DetailUserPageState extends State<DetailUserPage> {
   late Future<List<Post>> postObject;
   late Future<List<Album>> albumObject;
+  late Future<List<Photo>> photoObject;
   static const kDefualPadding = 12.0;
 
   @override
@@ -26,6 +31,7 @@ class _DetailUserPageState extends State<DetailUserPage> {
 
     postObject = PostApi().fetchPostsByUserId(widget.user!.id);
     albumObject = AlbumApi().fetchAlbumsByUserId(widget.user!.id);
+    photoObject = PhotoApi().fetchPhotoByUserId(widget.user!.id);
   }
 
   // Для отображения имени пользователя
@@ -107,7 +113,7 @@ class _DetailUserPageState extends State<DetailUserPage> {
         ),
         const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
         SizedBox(
-          height: 225,
+          height: 230,
           child: FutureBuilder<List<Post>>(
               future: postObject,
               // Shimmer.fromColors(
@@ -137,7 +143,16 @@ class _DetailUserPageState extends State<DetailUserPage> {
               }),
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PostsPage(
+                    posts: postObject,
+                  ),
+                ),
+              );
+            },
             child: const Text(
               'Show all posts',
               style:
@@ -157,12 +172,13 @@ class _DetailUserPageState extends State<DetailUserPage> {
         ),
         const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
         SizedBox(
-          height: 200,
+          height: 180,
           child: FutureBuilder<List<Album>>(
               future: albumObject,
               builder: (context, snapshot) {
                 return ListView.separated(
-                  separatorBuilder: (context, index) => Divider(height: 5),
+                  separatorBuilder: (context, index) =>
+                      const Divider(height: 5),
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (_, index) => ListTile(
                     onTap: () {
@@ -180,31 +196,24 @@ class _DetailUserPageState extends State<DetailUserPage> {
               }),
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AlbumsPage(
+                    albums: albumObject,
+                  ),
+                ),
+              );
+            },
             child: const Text(
-              'Show all posts',
+              'Show all albums',
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             )),
       ],
     );
   }
-
-  // Widget _horizontalListView() {
-  //   return Row(children: [
-  //     Expanded(
-  //       child: ListView.builder(
-  //         scrollDirection: Axis.horizontal,
-  //         itemBuilder: (_, __) => _buildBox(color: Colors.orange),
-  //         itemCount: 4,
-  //       ),
-  //     ),
-  //     TextButton(onPressed: () {}, child: const Text('Show all'))
-  //   ]);
-  // }
-
-  // Widget _buildBox({Color? color}) => Container(
-  //     margin: EdgeInsets.all(12), height: 100, width: 120, color: color);
 
   @override
   Widget build(BuildContext context) {
@@ -225,7 +234,7 @@ class _DetailUserPageState extends State<DetailUserPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Icon(Icons.account_circle_outlined, size: 220),
+                  Icon(Icons.account_circle_outlined, size: 120),
                 ],
               ),
               _buildName(),
@@ -258,4 +267,21 @@ class _DetailUserPageState extends State<DetailUserPage> {
       ),
     );
   }
+
+  // Widget _horizontalListView() {
+  //   return Row(children: [
+  //     Expanded(
+  //       child: ListView.builder(
+  //         scrollDirection: Axis.horizontal,
+  //         itemBuilder: (_, __) => _buildBox(color: Colors.orange),
+  //         itemCount: 4,
+  //       ),
+  //     ),
+  //     TextButton(onPressed: () {}, child: const Text('Show all'))
+  //   ]);
+  // }
+
+  // Widget _buildBox({Color? color}) => Container(
+  //     margin: EdgeInsets.all(12), height: 100, width: 120, color: color);
+
 }

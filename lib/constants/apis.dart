@@ -16,4 +16,5 @@ class Constants {
   static const String PLACEHOLDER_POSTS_PATH = '/posts';
   static const String PLACEHOLDER_COMMENTS_PATH = '/comments';
   static const String PLACEHOLDER_ALBUMS_PATH = '/albums';
+  static const String PLACEHOLDER_PHOTOS_PATH = '/photos';
 }
