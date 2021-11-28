@@ -184,8 +184,10 @@ class _DetailUserPageState extends State<DetailUserPage> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    leading:
-                        Image.network('https://via.placeholder.com/150/771796'),
+                    leading: const CircleAvatar(
+                        radius: 23,
+                        backgroundImage: NetworkImage(
+                            'https://via.placeholder.com/150/771796')),
                     title: Text(
                       '${snapshot.data?[index].title}',
                       style: const TextStyle(fontSize: 20),

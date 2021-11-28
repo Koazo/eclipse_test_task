@@ -1,5 +1,6 @@
 import 'package:eclipse_test_task/models/post.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({Key? key, this.posts}) : super(key: key);
@@ -37,17 +38,29 @@ class _PostsPageState extends State<PostsPage> {
       body: FutureBuilder<List<Post>>(
         future: posts,
         builder: (context, snapshot) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return ListTile(
-                onTap: () {},
-                title: Text(
-                  '${index + 1}. ${snapshot.data?[index].title}',
-                ),
-                subtitle: Text('${getFirstLineOfBody(snapshot, index)}'),
-              );
-            },
-            itemCount: snapshot.data?.length,
+          return AnimationLimiter(
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  duration: const Duration(milliseconds: 375),
+                  child: SlideAnimation(
+                    verticalOffset: 50,
+                    child: FadeInAnimation(
+                      child: ListTile(
+                        onTap: () {},
+                        title: Text(
+                          '${index + 1}. ${snapshot.data?[index].title}',
+                        ),
+                        subtitle:
+                            Text('${getFirstLineOfBody(snapshot, index)}'),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              itemCount: snapshot.data?.length,
+            ),
           );
         },
       ),
