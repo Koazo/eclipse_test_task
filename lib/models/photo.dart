@@ -2,10 +2,15 @@ class Photo {
   String? albumId;
   String? id;
   String? title;
-  String? url;
+  late String url;
   String? thumbnailUrl;
 
-  Photo({this.albumId, this.id, this.title, this.url, this.thumbnailUrl});
+  Photo(
+      {this.albumId,
+      this.id,
+      this.title,
+      required this.url,
+      this.thumbnailUrl});
 
   Photo.fromJson(Map<String, dynamic> json) {
     albumId = json['albumId'].toString();

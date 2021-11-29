@@ -1,4 +1,5 @@
 import 'package:eclipse_test_task/models/album.dart';
+import 'package:eclipse_test_task/pages/detail_album_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
@@ -42,7 +43,15 @@ class _AlbumsPageState extends State<AlbumsPage> {
                     verticalOffset: 50.0,
                     child: FadeInAnimation(
                       child: ListTile(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailAlbumPage(
+                                  album: snapshot.data?[index],
+                                ),
+                              ));
+                        },
                         title: Text(
                           '${index + 1}. ${snapshot.data?[index].title}',
                         ),

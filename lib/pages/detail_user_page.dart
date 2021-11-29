@@ -5,6 +5,8 @@ import 'package:eclipse_test_task/models/album.dart';
 import 'package:eclipse_test_task/models/photo.dart';
 import 'package:eclipse_test_task/models/post.dart';
 import 'package:eclipse_test_task/pages/albums_page.dart';
+import 'package:eclipse_test_task/pages/detail_album_page.dart';
+import 'package:eclipse_test_task/pages/detail_post_page.dart';
 import 'package:eclipse_test_task/pages/posts_page.dart';
 import 'package:flutter/material.dart';
 import 'package:eclipse_test_task/models/user.dart';
@@ -127,7 +129,14 @@ class _DetailUserPageState extends State<DetailUserPage> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (_, index) => ListTile(
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailPostPage(
+                            post: snapshot.data?[index],
+                          ),
+                        ),
+                      );
                     },
                     title: Text(
                       '${index + 1}. ${snapshot.data?[index].title}',
@@ -182,7 +191,12 @@ class _DetailUserPageState extends State<DetailUserPage> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (_, index) => ListTile(
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailAlbumPage(
+                                    album: snapshot.data?[index],
+                                  )));
                     },
                     leading: const CircleAvatar(
                         radius: 23,
@@ -269,21 +283,4 @@ class _DetailUserPageState extends State<DetailUserPage> {
       ),
     );
   }
-
-  // Widget _horizontalListView() {
-  //   return Row(children: [
-  //     Expanded(
-  //       child: ListView.builder(
-  //         scrollDirection: Axis.horizontal,
-  //         itemBuilder: (_, __) => _buildBox(color: Colors.orange),
-  //         itemCount: 4,
-  //       ),
-  //     ),
-  //     TextButton(onPressed: () {}, child: const Text('Show all'))
-  //   ]);
-  // }
-
-  // Widget _buildBox({Color? color}) => Container(
-  //     margin: EdgeInsets.all(12), height: 100, width: 120, color: color);
-
 }
