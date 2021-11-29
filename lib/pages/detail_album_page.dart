@@ -17,23 +17,14 @@ class _DetailAlbumPageState extends State<DetailAlbumPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    super.initState();
     photos = AlbumApi().fecthPhotosByAlbumId(widget.album?.id);
   }
 
-  final List<String> imageList = ['', '', '', ''];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Album',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -43,9 +34,12 @@ class _DetailAlbumPageState extends State<DetailAlbumPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
-                  child: Text(
-                    '${widget.album?.title}',
-                    style: const TextStyle(fontSize: 20),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Text(
+                      '${widget.album?.title}',
+                      style: const TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
               ],

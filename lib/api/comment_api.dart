@@ -18,4 +18,20 @@ class CommentApi {
     return List<Comment>.from(
         await jsonDecode(response.body).map((x) => Comment.fromJson(x)));
   }
+
+  void sendComment(postId, name, email, commentBody) async {
+    var uri = Uri.https(Constants.PLACEHOLDER_BASE_URL_DOMAIN,
+        Constants.PLACEHOLDER_COMMENTS_PATH);
+
+    final parameters = {
+      "postId": postId,
+      "name": name,
+      "email": email,
+      "body": commentBody
+    };
+
+    final response = await http.post(uri, body: parameters);
+
+    print(response.body);
+  }
 }

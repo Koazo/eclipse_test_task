@@ -11,7 +11,6 @@ import 'package:eclipse_test_task/pages/posts_page.dart';
 import 'package:flutter/material.dart';
 import 'package:eclipse_test_task/models/user.dart';
 import 'package:flutter/rendering.dart';
-import 'package:shimmer/shimmer.dart';
 
 class DetailUserPage extends StatefulWidget {
   const DetailUserPage({Key? key, this.user}) : super(key: key);
