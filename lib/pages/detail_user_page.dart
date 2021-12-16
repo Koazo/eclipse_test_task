@@ -1,6 +1,7 @@
 import 'package:eclipse_test_task/api/album_api.dart';
 import 'package:eclipse_test_task/api/photo_api.dart';
 import 'package:eclipse_test_task/api/post_api.dart';
+import 'package:eclipse_test_task/constants/ui.dart';
 import 'package:eclipse_test_task/models/album.dart';
 import 'package:eclipse_test_task/models/photo.dart';
 import 'package:eclipse_test_task/models/post.dart';
@@ -24,15 +25,20 @@ class _DetailUserPageState extends State<DetailUserPage> {
   late Future<List<Post>> postObject;
   late Future<List<Album>> albumObject;
   late Future<List<Photo>> photoObject;
-  static const kDefualPadding = 12.0;
 
   @override
   void initState() {
     super.initState();
 
-    postObject = PostApi().fetchPostsByUserId(widget.user!.id);
-    albumObject = AlbumApi().fetchAlbumsByUserId(widget.user!.id);
-    photoObject = PhotoApi().fetchPhotoByUserId(widget.user!.id);
+    postObject = PostApi().fetchPostsByUserId(
+      widget.user!.id,
+    );
+    albumObject = AlbumApi().fetchAlbumsByUserId(
+      widget.user!.id,
+    );
+    photoObject = PhotoApi().fetchPhotoByUserId(
+      widget.user!.id,
+    );
   }
 
   // Для отображения имени пользователя
@@ -112,7 +118,7 @@ class _DetailUserPageState extends State<DetailUserPage> {
           'Posts',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),
-        const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
+        ConstantsUI.detailUserPagePadding(24.0),
         SizedBox(
           height: 230,
           child: FutureBuilder<List<Post>>(
@@ -178,54 +184,57 @@ class _DetailUserPageState extends State<DetailUserPage> {
           'Albums',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),
-        const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
+        ConstantsUI.detailUserPagePadding(),
         SizedBox(
           height: 180,
           child: FutureBuilder<List<Album>>(
-              future: albumObject,
-              builder: (context, snapshot) {
-                return ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      const Divider(height: 5),
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (_, index) => ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailAlbumPage(
-                                    album: snapshot.data?[index],
-                                  )));
-                    },
-                    leading: const CircleAvatar(
-                        radius: 23,
-                        backgroundImage: NetworkImage(
-                            'https://via.placeholder.com/150/771796')),
-                    title: Text(
-                      '${snapshot.data?[index].title}',
-                      style: const TextStyle(fontSize: 20),
-                    ),
+            future: albumObject,
+            builder: (context, snapshot) {
+              return ListView.separated(
+                separatorBuilder: (context, index) => const Divider(height: 5),
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (_, index) => ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailAlbumPage(
+                          album: snapshot.data?[index],
+                        ),
+                      ),
+                    );
+                  },
+                  leading: const CircleAvatar(
+                    radius: 23,
+                    backgroundImage:
+                        NetworkImage('https://via.placeholder.com/150/771796'),
                   ),
-                  itemCount: 3,
-                );
-              }),
-        ),
-        TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AlbumsPage(
-                    albums: albumObject,
+                  title: Text(
+                    '${snapshot.data?[index].title}',
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ),
+                itemCount: 3,
               );
             },
-            child: const Text(
-              'Show all albums',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-            )),
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AlbumsPage(
+                  albums: albumObject,
+                ),
+              ),
+            );
+          },
+          child: const Text(
+            'Show all albums',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+        ),
       ],
     );
   }
@@ -234,13 +243,17 @@ class _DetailUserPageState extends State<DetailUserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.user!.username.toString(),
-            style: const TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          widget.user!.username.toString(),
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -249,32 +262,48 @@ class _DetailUserPageState extends State<DetailUserPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Icon(Icons.account_circle_outlined, size: 120),
+                  Icon(
+                    Icons.account_circle_outlined,
+                    size: 120,
+                  ),
                 ],
               ),
               _buildName(),
-              const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
+              ConstantsUI.detailUserPagePadding(),
               _buildCatchPhrase(),
-              const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
-              _buildInfoGraph(Icons.phone_iphone, widget.user!.phone), //Phone
-              const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
-              _buildInfoGraph(Icons.email_outlined, widget.user!.email), //Email
-              const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
-              _buildInfoGraph(Icons.web, widget.user!.website), //Website
-              const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
+              ConstantsUI.detailUserPagePadding(),
               _buildInfoGraph(
-                  Icons.business, widget.user!.company!.name), //Company name
-              const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
-              _buildInfoGraph(Icons.location_on_outlined,
-                  '${widget.user!.address!.city}, ${widget.user!.address!.street}, ${widget.user!.address!.suite}'), //Address
-              const Padding(padding: EdgeInsets.only(top: kDefualPadding)),
+                Icons.phone_iphone,
+                widget.user!.phone,
+              ), //Phone
+              ConstantsUI.detailUserPagePadding(),
               _buildInfoGraph(
-                  Icons.person_outline,
-                  widget.user!.company!
-                      .bs), //user's position in company (business)
-              const Padding(padding: EdgeInsets.only(top: kDefualPadding * 2)),
+                Icons.email_outlined,
+                widget.user!.email,
+              ), //Email
+              ConstantsUI.detailUserPagePadding(),
+              _buildInfoGraph(
+                Icons.web,
+                widget.user!.website,
+              ), //Website
+              ConstantsUI.detailUserPagePadding(),
+              _buildInfoGraph(
+                Icons.business,
+                widget.user!.company!.name,
+              ), //Company name
+              ConstantsUI.detailUserPagePadding(),
+              _buildInfoGraph(
+                Icons.location_on_outlined,
+                '${widget.user!.address!.city}, ${widget.user!.address!.street}, ${widget.user!.address!.suite}',
+              ), //Address
+              ConstantsUI.detailUserPagePadding(),
+              _buildInfoGraph(
+                Icons.person_outline,
+                widget.user!.company!.bs,
+              ), //user's position in company (business)
+              ConstantsUI.detailUserPagePadding(24.0),
               _buildPostsBlock(),
-              const Padding(padding: EdgeInsets.only(top: kDefualPadding * 2)),
+              ConstantsUI.detailUserPagePadding(24.0),
               _buildAlbumsBlock(),
             ],
           ),

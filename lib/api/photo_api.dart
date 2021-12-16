@@ -10,8 +10,8 @@ class PhotoApi {
       'userId': userId,
     };
 
-    var uri = Uri.https(Constants.PLACEHOLDER_BASE_URL_DOMAIN,
-        Constants.PLACEHOLDER_PHOTOS_PATH, parameters);
+    var uri = Uri.https(ConstantsApi.placeholderBaseURLDomain,
+        ConstantsApi.placeHolderPhotosPath, parameters);
 
     var response = await http.get(uri);
 

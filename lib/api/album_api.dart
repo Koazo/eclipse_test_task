@@ -11,9 +11,8 @@ class AlbumApi {
       'userId': userId,
     };
 
-    var uri = Uri.https(Constants.PLACEHOLDER_BASE_URL_DOMAIN,
-        Constants.PLACEHOLDER_ALBUMS_PATH, parameters);
-    // var uri = Uri.parse('https://jsonplaceholder.typicode.com/users/1/albums');
+    var uri = Uri.https(ConstantsApi.placeholderBaseURLDomain,
+        ConstantsApi.placeholderAlbumsPath, parameters);
 
     var response = await http.get(uri);
 
@@ -26,8 +25,8 @@ class AlbumApi {
       'albumId': albumId,
     };
 
-    var uri = Uri.https(Constants.PLACEHOLDER_BASE_URL_DOMAIN,
-        Constants.PLACEHOLDER_PHOTOS_PATH, parameters);
+    var uri = Uri.https(ConstantsApi.placeholderBaseURLDomain,
+        ConstantsApi.placeHolderPhotosPath, parameters);
 
     var response = await http.get(uri);
 

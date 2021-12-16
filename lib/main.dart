@@ -8,10 +8,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'GothamPro',
-        appBarTheme: const AppBarTheme(
-            color: Colors.white, elevation: .0, foregroundColor: Colors.black),
-      ),
-      home: const UsersPage());
+        theme: ThemeData(
+          fontFamily: 'GothamPro',
+          appBarTheme: const AppBarTheme(
+              color: Colors.white,
+              elevation: .0,
+              foregroundColor: Colors.black),
+        ),
+        home: const UsersPage(),
+      );
 }

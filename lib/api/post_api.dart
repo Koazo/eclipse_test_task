@@ -10,9 +10,8 @@ class PostApi {
       'userId': userId,
     };
 
-    var uri = Uri.https(Constants.PLACEHOLDER_BASE_URL_DOMAIN,
-        Constants.PLACEHOLDER_POSTS_PATH, parameters);
-    // var uri = Uri.parse('https://jsonplaceholder.typicode.com/users/1/posts');
+    var uri = Uri.https(ConstantsApi.placeholderBaseURLDomain,
+        ConstantsApi.placeholderPostsPath, parameters);
 
     var response = await http.get(uri);
 

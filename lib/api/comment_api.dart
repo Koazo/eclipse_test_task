@@ -10,8 +10,8 @@ class CommentApi {
       'postId': postId,
     };
 
-    var uri = Uri.https(Constants.PLACEHOLDER_BASE_URL_DOMAIN,
-        Constants.PLACEHOLDER_COMMENTS_PATH, parameters);
+    var uri = Uri.https(ConstantsApi.placeholderBaseURLDomain,
+        ConstantsApi.placeholderCommentsPath, parameters);
 
     var response = await http.get(uri);
 
@@ -20,8 +20,8 @@ class CommentApi {
   }
 
   void sendComment(postId, name, email, commentBody) async {
-    var uri = Uri.https(Constants.PLACEHOLDER_BASE_URL_DOMAIN,
-        Constants.PLACEHOLDER_COMMENTS_PATH);
+    var uri = Uri.https(ConstantsApi.placeholderBaseURLDomain,
+        ConstantsApi.placeholderCommentsPath);
 
     final parameters = {
       "postId": postId,
@@ -30,8 +30,6 @@ class CommentApi {
       "body": commentBody
     };
 
-    final response = await http.post(uri, body: parameters);
-
-    print(response.body);
+    await http.post(uri, body: parameters);
   }
 }
